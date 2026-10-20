@@ -8,19 +8,19 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,N
 -- Schema mydb
 -- -----------------------------------------------------
 -- -----------------------------------------------------
--- Schema littlelemondm
+-- Schema littlelemondb
 -- -----------------------------------------------------
 
 -- -----------------------------------------------------
--- Schema littlelemondm
+-- Schema littlelemondb
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `littlelemondm` DEFAULT CHARACTER SET utf8mb3 ;
-USE `littlelemondm` ;
+CREATE SCHEMA IF NOT EXISTS `littlelemondb` DEFAULT CHARACTER SET utf8mb3 ;
+USE `littlelemondb` ;
 
 -- -----------------------------------------------------
--- Table `littlelemondm`.`customers`
+-- Table `littlelemondb`.`customers`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `littlelemondm`.`customers` (
+CREATE TABLE IF NOT EXISTS `littlelemondb`.`customers` (
   `CustomerID` INT NOT NULL AUTO_INCREMENT,
   `CustomerName` VARCHAR(50) NOT NULL,
   `Email` VARCHAR(50) NULL DEFAULT NULL,
@@ -31,9 +31,9 @@ DEFAULT CHARACTER SET = utf8mb3;
 
 
 -- -----------------------------------------------------
--- Table `littlelemondm`.`staff`
+-- Table `littlelemondb`.`staff`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `littlelemondm`.`staff` (
+CREATE TABLE IF NOT EXISTS `littlelemondb`.`staff` (
   `StaffID` VARCHAR(50) NOT NULL,
   `StaffName` VARCHAR(50) NOT NULL,
   `Role` VARCHAR(50) NOT NULL,
@@ -44,9 +44,9 @@ DEFAULT CHARACTER SET = utf8mb3;
 
 
 -- -----------------------------------------------------
--- Table `littlelemondm`.`bookings`
+-- Table `littlelemondb`.`bookings`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `littlelemondm`.`bookings` (
+CREATE TABLE IF NOT EXISTS `littlelemondb`.`bookings` (
   `BookingID` INT NOT NULL,
   `BookingDate` DATE NOT NULL,
   `TableNumber` INT NOT NULL,
@@ -57,12 +57,12 @@ CREATE TABLE IF NOT EXISTS `littlelemondm`.`bookings` (
   INDEX `customer_id_fk_idx` (`CustomerID` ASC) VISIBLE,
   CONSTRAINT `customer_id_fk`
     FOREIGN KEY (`CustomerID`)
-    REFERENCES `littlelemondm`.`customers` (`CustomerID`)
+    REFERENCES `littlelemondb`.`customers` (`CustomerID`)
     ON DELETE CASCADE
     ON UPDATE CASCADE,
   CONSTRAINT `staff_id_fk`
     FOREIGN KEY (`StaffID`)
-    REFERENCES `littlelemondm`.`staff` (`StaffID`)
+    REFERENCES `littlelemondb`.`staff` (`StaffID`)
     ON DELETE CASCADE
     ON UPDATE CASCADE)
 ENGINE = InnoDB
@@ -70,9 +70,9 @@ DEFAULT CHARACTER SET = utf8mb3;
 
 
 -- -----------------------------------------------------
--- Table `littlelemondm`.`menuitems`
+-- Table `littlelemondb`.`menuitems`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `littlelemondm`.`menuitems` (
+CREATE TABLE IF NOT EXISTS `littlelemondb`.`menuitems` (
   `MenuItemsID` INT NOT NULL AUTO_INCREMENT,
   `CourseName` VARCHAR(100) NOT NULL,
   `StarterName` VARCHAR(100) NOT NULL,
@@ -84,9 +84,9 @@ DEFAULT CHARACTER SET = utf8mb3;
 
 
 -- -----------------------------------------------------
--- Table `littlelemondm`.`menus`
+-- Table `littlelemondb`.`menus`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `littlelemondm`.`menus` (
+CREATE TABLE IF NOT EXISTS `littlelemondb`.`menus` (
   `MenuID` INT NOT NULL,
   `ItemName` VARCHAR(100) NOT NULL,
   `Cuisine` VARCHAR(100) NOT NULL,
@@ -96,7 +96,7 @@ CREATE TABLE IF NOT EXISTS `littlelemondm`.`menus` (
   INDEX `menus_menuitemsid_fk` (`MenuItemsID` ASC) VISIBLE,
   CONSTRAINT `menus_menuitemsid_fk`
     FOREIGN KEY (`MenuItemsID`)
-    REFERENCES `littlelemondm`.`menuitems` (`MenuItemsID`)
+    REFERENCES `littlelemondb`.`menuitems` (`MenuItemsID`)
     ON DELETE CASCADE
     ON UPDATE CASCADE)
 ENGINE = InnoDB
@@ -104,9 +104,9 @@ DEFAULT CHARACTER SET = utf8mb3;
 
 
 -- -----------------------------------------------------
--- Table `littlelemondm`.`orders`
+-- Table `littlelemondb`.`orders`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `littlelemondm`.`orders` (
+CREATE TABLE IF NOT EXISTS `littlelemondb`.`orders` (
   `OrderID` INT NOT NULL,
   `OrderDate` DATE NOT NULL,
   `Quantity` INT NOT NULL,
@@ -120,17 +120,17 @@ CREATE TABLE IF NOT EXISTS `littlelemondm`.`orders` (
   INDEX `booking_id_fk_idx` (`BookingID` ASC) VISIBLE,
   CONSTRAINT `orders_booking_id_fk`
     FOREIGN KEY (`BookingID`)
-    REFERENCES `littlelemondm`.`bookings` (`BookingID`)
+    REFERENCES `littlelemondb`.`bookings` (`BookingID`)
     ON DELETE CASCADE
     ON UPDATE CASCADE,
   CONSTRAINT `orders_customer_id_fk`
     FOREIGN KEY (`CustomerID`)
-    REFERENCES `littlelemondm`.`customers` (`CustomerID`)
+    REFERENCES `littlelemondb`.`customers` (`CustomerID`)
     ON DELETE CASCADE
     ON UPDATE CASCADE,
   CONSTRAINT `orders_menu_id_fk`
     FOREIGN KEY (`MenuID`)
-    REFERENCES `littlelemondm`.`menus` (`MenuID`)
+    REFERENCES `littlelemondb`.`menus` (`MenuID`)
     ON DELETE CASCADE
     ON UPDATE CASCADE)
 ENGINE = InnoDB
@@ -138,9 +138,9 @@ DEFAULT CHARACTER SET = utf8mb3;
 
 
 -- -----------------------------------------------------
--- Table `littlelemondm`.`deliverystatus`
+-- Table `littlelemondb`.`deliverystatus`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `littlelemondm`.`deliverystatus` (
+CREATE TABLE IF NOT EXISTS `littlelemondb`.`deliverystatus` (
   `DeliveryID` VARCHAR(50) NOT NULL,
   `DeliveryDate` DATE NOT NULL,
   `Status` VARCHAR(50) NOT NULL,
@@ -149,7 +149,7 @@ CREATE TABLE IF NOT EXISTS `littlelemondm`.`deliverystatus` (
   INDEX `fk_DeliveryStatus_Orders1_idx` (`OrderID` ASC) VISIBLE,
   CONSTRAINT `DeliveryStatus_Ordersid_fk`
     FOREIGN KEY (`OrderID`)
-    REFERENCES `littlelemondm`.`orders` (`OrderID`)
+    REFERENCES `littlelemondb`.`orders` (`OrderID`)
     ON DELETE CASCADE
     ON UPDATE CASCADE)
 ENGINE = InnoDB

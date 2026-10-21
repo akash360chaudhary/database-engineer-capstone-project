@@ -55,7 +55,7 @@ DELIMITER ;
 SET @bookingdate = '2022-11-12';
 SET @tableNo = 3;
 
-CALL CheckBooking(@bookingdate, @tableNo)
+CALL CheckBooking(@bookingdate, @tableNo);
 
 
 

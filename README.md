@@ -239,7 +239,7 @@ Review these points and test the procedures with valid data before describing th
 ## Author
 
 **Akash Chaudhary**  
-GitHub: [your-username](https://github.com/akash360chaudhary) · LinkedIn: [your-profile](https://www.linkedin.com/in/ak-chaudhary/)
+GitHub: [akash360chaudhary](https://github.com/akash360chaudhary) · LinkedIn: [ak-chaudhary](https://www.linkedin.com/in/ak-chaudhary/)
 
 ## License
 

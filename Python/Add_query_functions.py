@@ -9,7 +9,7 @@ This gives you access to all the functionality available from the connector API,
 """
 import mysql.connector as connector
 
-connection = connector.connect(user = "root", password = "Akash981893@", db = "littlelemondb")
+connection = connector.connect(user = "root", password = "", db = "littlelemondb")
 
 # Create cusror
 cursor = connection.cursor()
